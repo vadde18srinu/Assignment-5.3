@@ -6,14 +6,9 @@ vec1
 vec2 = c(rownames(mtcars[11:25,]))
 vec2
 
-vec1vec2=length(setdiff(vec1, vec2)) == 0
+vec1vec2=identical(vec1,vec2)
 vec1vec2
 
-identical(sort(unique(vec1)), sort(unique(vec2)))
-vec1vec2
-
-ifelse(unique(vec1) == unique(vec2), TRUE, FALSE)
-# deferent type of functions for testing two vectors exactly equal.  
 
 2. Sort the character vector in ascending order and descending order.
 vec1 = c(rownames(mtcars[1:15,]))
@@ -34,18 +29,31 @@ vec2
 
 
 3. What is the major difference between str() and paste() show an example.
-s= "AcadGild Instructor-Led Online Training"
-s
-# The string can be assumed to be composed of words separated by whitespace
+library(stringr)
 
-s=paste(s, "-- 24by7 coding support", sep="")
-s
-# function past can add another charactor string
+# default usage of str()
+str_c("AcadGild Instructor-Led Online Training") 
+
+# removing zero length objects
+str_c("AcadGild", "Instructor-Led", "Online", "Training")
+
+
+
+# this is works fine
+paste("AcadGild", "Instructor-Led", "Online", "Training")
+
+#this is works fine too 
+paste("AcadGild Instructor-Led Online Training")
+
+#this is weired,  The objects NULL and character(0) have zero length, 
+yet when included inside paste() they are treated as an empty string "". 
+
+paste("AcadGild Instructor-Led Online Training", NULL, character(0))
+
 
 
 4. Introduce a separator when concatenating the strings.
 
-s=paste(s, "-- 24by7 coding support", sep=" ")
-s
-# Concatenate two strings with separator 
+#changing separator 
+str_c("AcadGild", "Instructor-Led", "Online" ,"Training", sep="-")
 
